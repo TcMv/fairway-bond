@@ -9,77 +9,140 @@ gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
-    step: '01',
-    title: 'Team Up',
-    desc: 'One parent, one child. One team. Parents play from the back tees, kids from forward tees. Handicaps keep it competitive.',
+    n: '01',
+    t: 'Team Up',
+    d: 'One parent, one child. One team. Parents from the back tees, kids from forward tees. Handicaps keep it fair.',
   },
   {
-    step: '02',
-    title: 'Alternate Shot Ambrose',
-    desc: 'Both tee off. Choose the best ball. Then alternate each shot until it&rsquo;s holed. Parents play odd-numbered holes, kids play even-numbered holes.',
+    n: '02',
+    t: 'Alternate Shot Ambrose',
+    d: 'Both tee off. Choose the best ball. Then alternate each shot until holed. Parents play odd holes, kids play even.',
   },
   {
-    step: '03',
-    title: 'Four Rounds',
-    desc: 'One round at each course. Accumulate points across the series. The team with the most points at the end takes the trophy.',
+    n: '03',
+    t: 'Four Rounds',
+    d: 'One round at each course across the Sunshine Coast. Accumulate points. The team with the most wins the trophy.',
   },
   {
-    step: '04',
-    title: 'Celebrate',
-    desc: 'Winners announced after the final round at Caloundra. Presentations, prizes, and a shared memory that lasts.',
+    n: '04',
+    t: 'Celebrate',
+    d: 'Winners announced after the final round at Caloundra. Presentations, prizes, and memories that last a lifetime.',
   },
 ];
 
 export function Format() {
-  const ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.from('.format-step', {
-      opacity: 0,
-      x: -40,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: 'power3.out',
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ref.current,
-        start: 'top 75%',
-        end: 'top 30%',
-        scrub: true,
+        trigger: pinRef.current,
+        pin: true,
+        start: 'top top',
+        end: '+=250%',
+        scrub: 1,
       },
+    });
+
+    // Animate through each step
+    steps.forEach((_, i) => {
+      const prevIdx = i - 1;
+      if (prevIdx >= 0) {
+        tl.to(`.step-${prevIdx}`, {
+          opacity: 0,
+          y: -30,
+          duration: 0.4,
+        });
+      }
+      tl.to(
+        `.step-${i}`,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+        },
+        '<'
+      );
+    });
+  });
+
+  // Mobile: just show all steps without pinning
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+    mm.add('(max-width: 767px)', () => {
+      // Kill any pinning from above on mobile
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.vars.pin) st.kill();
+      });
     });
   });
 
   return (
     <section
-      ref={ref}
-      className="relative py-32 px-6 bg-fairway-dark overflow-hidden"
+      ref={sectionRef}
+      id="format"
+      className="relative bg-fairway-dark overflow-hidden"
     >
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+      {/* Desktop: pinned scroll section */}
+      <div ref={pinRef} className="hidden md:flex relative h-screen items-center">
+        <div className="max-w-5xl mx-auto px-6 w-full">
+          <p className="font-body text-gold-dim tracking-[0.25em] uppercase text-sm mb-4">
+            How It Works
+          </p>
+          <h2 className="font-heading text-4xl md:text-5xl text-cream mb-16">
+            The Format
+          </h2>
 
-      <div className="max-w-5xl mx-auto relative z-10">
-        <p className="font-body text-gold tracking-[0.2em] uppercase text-sm mb-4">
+          {steps.map((s, i) => (
+            <div
+              key={s.n}
+              className={`step-${i} absolute max-w-3xl ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+              style={{ transform: i === 0 ? 'translateY(0)' : 'translateY(-30px)' }}
+            >
+              <div className="flex items-start gap-6">
+                <span className="font-heading text-5xl md:text-6xl text-gold/20 min-w-[80px]">
+                  {s.n}
+                </span>
+                <div>
+                  <h3 className="font-heading text-2xl text-cream mb-3">{s.t}</h3>
+                  <p className="font-body text-cream/50 leading-relaxed max-w-xl">
+                    {s.d}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress dots */}
+        <div className="absolute right-10 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`step-dot w-2 h-2 rounded-full transition-colors duration-500 ${i === 0 ? 'bg-gold' : 'bg-cream/20'}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile: stacked layout */}
+      <div className="md:hidden py-20 px-6">
+        <p className="font-body text-gold-dim tracking-[0.25em] uppercase text-sm mb-4">
           How It Works
         </p>
-        <h2 className="font-heading text-4xl md:text-5xl text-cream mb-16 leading-tight">
-          The Format
-        </h2>
+        <h2 className="font-heading text-4xl text-cream mb-12">The Format</h2>
 
-        <div className="space-y-8">
+        <div className="space-y-12">
           {steps.map((s) => (
-            <div
-              key={s.step}
-              className="format-step flex gap-6 md:gap-10 items-start group"
-            >
-              <span className="font-heading text-3xl md:text-4xl text-gold/30 group-hover:text-gold/60 transition-colors duration-500 min-w-[60px]">
-                {s.step}
+            <div key={s.n} className="flex items-start gap-4">
+              <span className="font-heading text-3xl text-gold/20 min-w-[50px]">
+                {s.n}
               </span>
-              <div className="flex-1 border-b border-cream/10 pb-8 group-last:border-0">
-                <h3 className="font-heading text-xl text-cream mb-2">
-                  {s.title}
-                </h3>
-                <p className="font-body text-cream/60 leading-relaxed">
-                  {s.desc}
+              <div>
+                <h3 className="font-heading text-xl text-cream mb-2">{s.t}</h3>
+                <p className="font-body text-cream/50 leading-relaxed text-sm">
+                  {s.d}
                 </p>
               </div>
             </div>

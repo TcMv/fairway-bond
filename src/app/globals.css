@@ -4,8 +4,10 @@
   --color-fairway: #1B4332;
   --color-fairway-light: #2D6A4F;
   --color-fairway-dark: #0A1A12;
+  --color-fairway-deeper: #050F0A;
   --color-gold: #D4A853;
   --color-gold-light: #E8C87A;
+  --color-gold-dim: #A8853A;
   --color-cream: #F5F0E8;
   --color-sand: #E8DCC8;
   --font-heading: 'Playfair Display', Georgia, serif;
@@ -23,25 +25,40 @@ html {
 }
 
 body {
-  background: var(--color-fairway-dark);
+  background: var(--color-fairway-deeper);
   color: var(--color-cream);
   font-family: var(--font-body);
   overflow-x: hidden;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-fairway-dark);
+  background: var(--color-fairway-deeper);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
+  background: var(--color-gold-dim);
   border-radius: 3px;
 }
 
 ::selection {
   background: var(--color-gold);
-  color: var(--color-fairway-dark);
+  color: var(--color-fairway-deeper);
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }

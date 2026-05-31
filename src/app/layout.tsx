@@ -32,6 +32,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        {/* Preconnect to image CDNs */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
       <body>
         <ScrollProvider>{children}</ScrollProvider>
       </body>

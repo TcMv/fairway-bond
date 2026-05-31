@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,14 +9,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const scrollHintRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const scrollLineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Parallax background
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    // Background particles/stars fade in
+    tl.fromTo(
+      '.hero-dot',
+      { opacity: 0, scale: 0 },
+      { opacity: 1, scale: 1, stagger: 0.03, duration: 0.6 }
+    );
+
+    // Title reveal
+    tl.from(
+      '.hero-title-line',
+      { y: 120, opacity: 0, stagger: 0.15, duration: 1 },
+      '-=0.3'
+    );
+
+    // Subtitle
+    tl.from(
+      '.hero-sub',
+      { y: 40, opacity: 0, duration: 0.8 },
+      '-=0.5'
+    );
+
+    // CTA
+    tl.from(
+      '.hero-cta',
+      { y: 30, opacity: 0, duration: 0.6 },
+      '-=0.3'
+    );
+
+    // Parallax on scroll
     gsap.to('.hero-bg', {
-      y: '25%',
-      scale: 1.1,
+      y: '20%',
+      scale: 1.05,
       ease: 'none',
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -26,11 +56,10 @@ export function Hero() {
       },
     });
 
-    // Text fade out on scroll
-    gsap.to(textRef.current, {
-      y: -80,
-      opacity: 0,
-      scale: 0.9,
+    // Scroll line animation
+    gsap.to(scrollLineRef.current, {
+      scaleY: 1,
+      transformOrigin: 'top center',
       ease: 'none',
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -38,91 +67,104 @@ export function Hero() {
         end: 'bottom top',
         scrub: true,
       },
-    });
-
-    // Scroll hint pulse
-    gsap.to(scrollHintRef.current, {
-      y: 10,
-      opacity: 0.3,
-      duration: 1.5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
     });
   });
+
+  // Generate floating dots for ambient effect
+  const dots = Array.from({ length: 40 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    delay: Math.random() * 0.5,
+  }));
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden flex items-center justify-center"
+      className="relative h-screen overflow-hidden flex items-center justify-center bg-fairway-deeper"
     >
-      {/* Background gradient overlay */}
+      {/* Dark ambient gradient layers */}
       <div className="hero-bg absolute inset-0 will-change-transform">
-        <div className="absolute inset-0 bg-gradient-to-b from-fairway-dark/60 via-fairway/50 to-fairway-dark/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent" />
-        {/* Subtle pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, var(--color-cream) 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper via-fairway-dark/80 to-fairway/40" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-fairway-light/10 rounded-full blur-[100px]" />
+      </div>
+
+      {/* Floating dots */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {dots.map((d) => (
+          <div
+            key={d.id}
+            className="hero-dot absolute rounded-full bg-gold/20"
+            style={{
+              left: `${d.x}%`,
+              top: `${d.y}%`,
+              width: `${d.size}px`,
+              height: `${d.size}px`,
+              transitionDelay: `${d.delay}s`,
+            }}
+          />
+        ))}
       </div>
 
       {/* Content */}
-      <div
-        ref={textRef}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-      >
-        <p className="font-body text-gold tracking-[0.3em] uppercase text-sm md:text-base mb-6">
+      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+        {/* Pre-title */}
+        <p className="hero-sub font-body text-gold-dim tracking-[0.3em] uppercase text-xs md:text-sm mb-8">
           Sunshine Coast &mdash; 2026
         </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-cream mb-6 leading-tight">
-          The Fairway
-          <br />
-          <span className="text-gold">Bond</span>
+
+        {/* Main title — big and dramatic like Lando's site */}
+        <h1
+          ref={titleRef}
+          className="font-heading text-6xl md:text-8xl lg:text-[120px] text-cream leading-[0.9] tracking-tight"
+        >
+          <div className="hero-title-line overflow-hidden">
+            <span className="inline-block">The Fairway</span>
+          </div>
+          <div className="hero-title-line overflow-hidden mt-2 md:mt-4">
+            <span className="inline-block text-gold">Bond</span>
+          </div>
         </h1>
-        <p className="font-body text-lg md:text-xl text-cream/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+
+        {/* Tagline */}
+        <p className="hero-sub font-body text-base md:text-lg text-cream/40 mt-8 max-w-xl mx-auto leading-relaxed tracking-wide">
           A 4-round parent-child golf series across the Sunshine Coast.
           <br />
-          Alternate shot Ambrose. One bond.
+          <span className="text-cream/60">
+            Alternate shot Ambrose. One bond.
+          </span>
         </p>
-        <a
-          href="#register"
-          className="inline-block px-10 py-4 bg-gold text-fairway-dark font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-lg tracking-wide"
-        >
-          Register Interest
-        </a>
+
+        {/* CTAs */}
+        <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <a
+            href="#register"
+            className="px-10 py-4 bg-gold text-fairway-dark font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-base tracking-wide hover:scale-105"
+          >
+            Register Interest
+          </a>
+          <a
+            href="#format"
+            className="px-10 py-4 border border-cream/20 text-cream/70 rounded-full hover:border-cream/40 hover:text-cream transition-all duration-300 text-base tracking-wide"
+          >
+            How It Works
+          </a>
+        </div>
       </div>
 
-      {/* Scroll hint */}
-      <div
-        ref={scrollHintRef}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="font-body text-cream/40 text-xs tracking-widest uppercase">
+      {/* Scroll indicator — vertical line style */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+        <span className="font-body text-cream/20 text-[10px] tracking-[0.3em] uppercase">
           Scroll
         </span>
-        <svg
-          width="20"
-          height="30"
-          viewBox="0 0 20 30"
-          fill="none"
-          className="text-cream/40"
-        >
-          <rect
-            x="1.5"
-            y="1.5"
-            width="17"
-            height="27"
-            rx="8.5"
-            stroke="currentColor"
-            strokeWidth="2"
+        <div className="relative w-px h-12 bg-cream/10 overflow-hidden">
+          <div
+            ref={scrollLineRef}
+            className="absolute top-0 left-0 w-full h-full bg-gold/60 origin-top scale-y-0"
           />
-          <circle cx="10" cy="10" r="2" fill="currentColor" />
-        </svg>
+        </div>
       </div>
     </section>
   );

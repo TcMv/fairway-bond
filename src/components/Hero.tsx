@@ -82,7 +82,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden flex items-center justify-center bg-fairway-deeper"
+      className="relative h-screen overflow-hidden bg-fairway-deeper"
     >
       {/* Looping video background */}
       <div className="hero-bg absolute inset-0 will-change-transform">
@@ -118,37 +118,31 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-        {/* Pre-title */}
-        <p className="hero-sub font-body text-gold-dim tracking-[0.3em] uppercase text-xs md:text-sm mb-8">
+      {/* Content — anchored to bottom-left */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 px-8 md:px-16 pb-24 md:pb-32">
+        <p className="hero-sub font-body text-gold-dim tracking-[0.3em] uppercase text-xs md:text-sm mb-5">
           Sunshine Coast &mdash; 2026
         </p>
 
-        {/* Main title — big and dramatic like Lando's site */}
         <h1
           ref={titleRef}
-          className="font-heading text-6xl md:text-8xl lg:text-[120px] text-cream leading-[0.9] tracking-tight"
+          className="font-heading text-6xl md:text-8xl lg:text-[100px] text-cream leading-[0.9] tracking-tight mb-8"
         >
           <div className="hero-title-line overflow-hidden">
             <span className="inline-block">The Fairway</span>
           </div>
-          <div className="hero-title-line overflow-hidden mt-2 md:mt-4">
+          <div className="hero-title-line overflow-hidden mt-2 md:mt-3">
             <span className="inline-block text-gold">Bond</span>
           </div>
         </h1>
 
-        {/* Tagline */}
-        <p className="hero-sub font-body text-base md:text-lg text-cream/40 mt-10 max-w-xl mx-auto leading-relaxed tracking-wide">
+        <p className="hero-sub font-body text-sm md:text-base text-cream/50 max-w-sm leading-relaxed mb-10">
           A 4-round parent-child golf series across the Sunshine Coast.
           <br />
-          <span className="text-cream/60">
-            Alternate shot Ambrose. One bond.
-          </span>
+          <span className="text-cream/70">Alternate shot Ambrose. One bond.</span>
         </p>
 
-        {/* CTAs */}
-        <div className="hero-cta flex flex-row gap-3 justify-center mt-10">
+        <div className="hero-cta flex flex-row gap-3">
           <a
             href="#register"
             className="px-8 py-3.5 bg-gold text-fairway-dark font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-sm tracking-wide hover:scale-105 whitespace-nowrap"
@@ -157,19 +151,19 @@ export function Hero() {
           </a>
           <a
             href="#format"
-            className="px-8 py-3.5 border border-cream/20 text-cream/70 rounded-full hover:border-cream/40 hover:text-cream transition-all duration-300 text-sm tracking-wide whitespace-nowrap"
+            className="px-8 py-3.5 border border-cream/20 text-cream/60 rounded-full hover:border-cream/40 hover:text-cream transition-all duration-300 text-sm tracking-wide whitespace-nowrap"
           >
             How It Works
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator — vertical line style */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <span className="font-body text-cream/20 text-[10px] tracking-[0.3em] uppercase">
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 right-8 md:right-16 flex flex-col items-center gap-3 z-10">
+        <span className="font-body text-cream/20 text-[10px] tracking-[0.3em] uppercase" style={{ writingMode: 'vertical-rl' }}>
           Scroll
         </span>
-        <div className="relative w-px h-12 bg-cream/10 overflow-hidden">
+        <div className="relative w-px h-16 bg-cream/10 overflow-hidden">
           <div
             ref={scrollLineRef}
             className="absolute top-0 left-0 w-full h-full bg-gold/60 origin-top scale-y-0"

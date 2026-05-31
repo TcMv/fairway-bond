@@ -139,7 +139,7 @@ export function Hero() {
         </h1>
 
         {/* Tagline */}
-        <p className="hero-sub font-body text-base md:text-lg text-cream/40 mt-8 max-w-xl mx-auto leading-relaxed tracking-wide">
+        <p className="hero-sub font-body text-base md:text-lg text-cream/40 mt-10 max-w-xl mx-auto leading-relaxed tracking-wide">
           A 4-round parent-child golf series across the Sunshine Coast.
           <br />
           <span className="text-cream/60">
@@ -148,16 +148,16 @@ export function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center mt-10">
+        <div className="hero-cta flex flex-row gap-3 justify-center mt-10">
           <a
             href="#register"
-            className="px-10 py-4 bg-gold text-fairway-dark font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-base tracking-wide hover:scale-105"
+            className="px-8 py-3.5 bg-gold text-fairway-dark font-semibold rounded-full hover:bg-gold-light transition-all duration-300 text-sm tracking-wide hover:scale-105 whitespace-nowrap"
           >
             Register Interest
           </a>
           <a
             href="#format"
-            className="px-10 py-4 border border-cream/20 text-cream/70 rounded-full hover:border-cream/40 hover:text-cream transition-all duration-300 text-base tracking-wide"
+            className="px-8 py-3.5 border border-cream/20 text-cream/70 rounded-full hover:border-cream/40 hover:text-cream transition-all duration-300 text-sm tracking-wide whitespace-nowrap"
           >
             How It Works
           </a>

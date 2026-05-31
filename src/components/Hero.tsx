@@ -89,7 +89,7 @@ export function Hero() {
         className="hero-bg absolute inset-0 will-change-transform bg-cover bg-center"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1535131741446-b73d1b05b6e2?w=1600&q=80)',
+            'url(/hero-bg.jpg)',
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper/80 via-fairway-deeper/60 to-fairway-deeper" />

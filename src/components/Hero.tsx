@@ -43,11 +43,11 @@ export function Hero() {
       '-=0.3'
     );
 
-    // Parallax on scroll
+    // Walking forward effect — slow zoom toward the subjects
     gsap.to('.hero-bg', {
-      y: '20%',
-      scale: 1.05,
+      scale: 1.25,
       ease: 'none',
+      transformOrigin: '35% 65%',
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top top',

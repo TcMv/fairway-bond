@@ -39,7 +39,7 @@ export function Marquee({
 
   return (
     <div
-      className={`border-y border-cream/5 py-4 bg-fairway-deeper/50 overflow-hidden ${className}`}
+      className={`border-y border-cream/5 py-5 md:py-6 bg-fairway-deeper/50 overflow-hidden ${className}`}
     >
       <div
         ref={trackRef}

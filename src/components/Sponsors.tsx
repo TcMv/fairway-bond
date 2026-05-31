@@ -63,7 +63,7 @@ export function Sponsors() {
   return (
     <section
       ref={ref}
-      className="relative py-28 md:py-36 px-6 bg-fairway-deeper overflow-hidden"
+      className="relative py-36 md:py-44 px-6 bg-fairway-deeper overflow-hidden"
     >
       {/* Background light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/3 rounded-full blur-[100px]" />

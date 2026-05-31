@@ -82,7 +82,7 @@ export function Format() {
     <section
       ref={sectionRef}
       id="format"
-      className="relative bg-fairway-dark overflow-hidden scroll-mt-20"
+      className="relative bg-fairway-dark overflow-hidden scroll-mt-20 pb-16 md:pb-20"
     >
       {/* Desktop: pinned scroll section */}
       <div ref={pinRef} className="hidden md:flex relative h-screen items-center">

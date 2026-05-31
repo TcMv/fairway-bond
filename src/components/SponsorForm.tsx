@@ -29,7 +29,7 @@ export function SponsorForm() {
   return (
     <section
       id="sponsor"
-      className="relative py-28 md:py-36 px-6 bg-fairway-deeper overflow-hidden"
+      className="relative py-36 md:py-44 px-6 bg-fairway-deeper overflow-hidden"
     >
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-gold/3 rounded-full blur-[100px]" />
 

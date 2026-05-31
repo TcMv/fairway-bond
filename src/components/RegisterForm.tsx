@@ -29,7 +29,7 @@ export function RegisterForm() {
   return (
     <section
       id="register"
-      className="relative py-28 md:py-36 px-6 bg-gradient-to-b from-fairway-deeper to-fairway-dark overflow-hidden"
+      className="relative py-36 md:py-44 px-6 bg-gradient-to-b from-fairway-deeper to-fairway-dark overflow-hidden"
     >
       {/* Accent glow */}
       <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-fairway-light/5 rounded-full blur-[100px]" />

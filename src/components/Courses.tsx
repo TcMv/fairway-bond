@@ -93,7 +93,7 @@ export function Courses() {
   return (
     <>
       {/* Horizontal gallery strip — like Lando's horizontal image rows */}
-      <section className="relative overflow-hidden bg-fairway-dark py-24">
+      <section className="relative overflow-hidden bg-fairway-dark py-16 md:py-20">
         <div className="px-6 mb-12">
           <p className="font-body text-gold-dim tracking-[0.25em] uppercase text-sm mb-4">
             The Venues
@@ -112,7 +112,7 @@ export function Courses() {
           {galleryImages.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-[280px] md:w-[350px] h-[400px] rounded-2xl overflow-hidden relative group"
+              className="flex-shrink-0 w-[280px] md:w-[300px] h-[380px] rounded-2xl overflow-hidden relative group"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"

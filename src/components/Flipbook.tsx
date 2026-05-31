@@ -160,7 +160,7 @@ export function Flipbook() {
         {/* Foreground content */}
         <div
           ref={textRef}
-          className="absolute inset-0 z-20 flex items-end pb-20 md:pb-32"
+          className="absolute inset-0 z-20 flex items-end pb-12 md:pb-20"
         >
           <div className="max-w-5xl mx-auto px-6 w-full">
             {frameTexts.map((ft, i) => (
@@ -173,20 +173,20 @@ export function Flipbook() {
                   transform: i === 0 ? 'translateY(0)' : 'translateY(-20px)',
                 }}
               >
-                <span className="font-heading text-6xl md:text-8xl text-gold/10 absolute -bottom-4 -left-2 select-none">
+                <span className="font-heading text-7xl md:text-8xl text-gold/10 absolute -bottom-5 -left-2 select-none">
                   {ft.step}
                 </span>
                 <div className="relative">
-                  <p className="font-body text-gold-dim tracking-[0.25em] uppercase text-xs mb-2">
+                  <p className="font-body text-gold-dim tracking-[0.25em] uppercase text-xs md:text-sm mb-4">
                     Step {ft.step}
                   </p>
-                  <h3 className="font-heading text-3xl md:text-4xl text-cream mb-3">
+                  <h3 className="font-heading text-3xl md:text-4xl text-cream mb-6 leading-tight">
                     {ft.title}
                   </h3>
                   <p className="font-body text-cream/50 leading-relaxed text-sm md:text-base max-w-lg">
                     {ft.desc}
                   </p>
-                  <div className="mt-6 h-px w-12 bg-gold/30" />
+                  <div className="mt-8 h-px w-16 bg-gold/30" />
                 </div>
               </div>
             ))}

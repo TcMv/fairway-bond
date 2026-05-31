@@ -24,14 +24,14 @@ export default function Home() {
           reverse
         />
         <Format />
-        <div id="courses">
+        <div id="courses" className="scroll-mt-20">
           <Courses />
         </div>
         <Marquee
           text="Headland · Maroochydore · Beerwah · Caloundra · Sunshine Coast Golf · 2026 · "
           speed={30}
         />
-        <div id="sponsors">
+        <div id="sponsors" className="scroll-mt-20">
           <Sponsors />
         </div>
         <RegisterForm />

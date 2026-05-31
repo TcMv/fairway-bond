@@ -81,7 +81,7 @@ export function Courses() {
         scrollTrigger: {
           trigger: scrollRef.current,
           start: 'top 70%',
-          end: () => `+=${scrollRef.current!.scrollWidth}`,
+          end: () => `+=${scrollRef.current!.scrollWidth - window.innerWidth}`,
           pin: true,
           scrub: 1,
           invalidateOnRefresh: true,

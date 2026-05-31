@@ -40,7 +40,7 @@ export function Format() {
         trigger: pinRef.current,
         pin: true,
         start: 'top top',
-        end: '+=250%',
+        end: '+=150%',
         scrub: 1,
       },
     });
@@ -82,7 +82,7 @@ export function Format() {
     <section
       ref={sectionRef}
       id="format"
-      className="relative bg-fairway-dark overflow-hidden"
+      className="relative bg-fairway-dark overflow-hidden scroll-mt-20"
     >
       {/* Desktop: pinned scroll section */}
       <div ref={pinRef} className="hidden md:flex relative h-screen items-center">

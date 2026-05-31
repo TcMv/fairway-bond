@@ -84,9 +84,16 @@ export function Hero() {
       ref={sectionRef}
       className="relative h-screen overflow-hidden flex items-center justify-center bg-fairway-deeper"
     >
-      {/* Dark ambient gradient layers */}
-      <div className="hero-bg absolute inset-0 will-change-transform">
-        <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper via-fairway-dark/80 to-fairway/40" />
+      {/* Background image with gradient overlays */}
+      <div
+        className="hero-bg absolute inset-0 will-change-transform bg-cover bg-center"
+        style={{
+          backgroundImage:
+            'url(https://images.unsplash.com/photo-1535131741446-b73d1b05b6e2?w=1600&q=80)',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper/80 via-fairway-deeper/60 to-fairway-deeper" />
+        <div className="absolute inset-0 bg-gradient-to-r from-fairway-deeper/50 via-transparent to-fairway-deeper/30" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-fairway-light/10 rounded-full blur-[100px]" />
       </div>

@@ -47,6 +47,26 @@ body {
   color: var(--color-fairway-deeper);
 }
 
+/* Nav scroll state */
+nav.scrolled {
+  background: rgba(5, 15, 10, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245, 240, 232, 0.05);
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (min-width: 768px) {
+  .custom-cursor-active {
+    cursor: none;
+  }
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active [data-cursor] {
+    cursor: none;
+  }
+}
+
 /* Horizontal scroll container */
 .horizontal-scroll {
   display: flex;

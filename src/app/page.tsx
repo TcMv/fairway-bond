@@ -1,4 +1,7 @@
+import { Nav } from '@/components/Nav';
+import { Cursor } from '@/components/Cursor';
 import { Hero } from '@/components/Hero';
+import { Marquee } from '@/components/Marquee';
 import { About } from '@/components/About';
 import { Format } from '@/components/Format';
 import { Courses } from '@/components/Courses';
@@ -9,15 +12,32 @@ import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <About />
-      <Format />
-      <Courses />
-      <Sponsors />
-      <RegisterForm />
-      <SponsorForm />
-      <Footer />
-    </main>
+    <>
+      <Cursor />
+      <Nav />
+      <main>
+        <Hero />
+        <Marquee />
+        <About />
+        <Marquee
+          text="Alternate Shot · Ambrose · Four Courses · Four Rounds · One Trophy · Sunshine Coast · "
+          reverse
+        />
+        <Format />
+        <div id="courses">
+          <Courses />
+        </div>
+        <Marquee
+          text="Headland · Maroochydore · Beerwah · Caloundra · Sunshine Coast Golf · 2026 · "
+          speed={30}
+        />
+        <div id="sponsors">
+          <Sponsors />
+        </div>
+        <RegisterForm />
+        <SponsorForm />
+        <Footer />
+      </main>
+    </>
   );
 }

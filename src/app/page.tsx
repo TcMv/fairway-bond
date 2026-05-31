@@ -1,6 +1,6 @@
 import { Nav } from '@/components/Nav';
 import { Cursor } from '@/components/Cursor';
-import { ScrollVideoHero } from '@/components/ScrollVideoHero';
+import { Hero } from '@/components/Hero';
 import { Marquee } from '@/components/Marquee';
 import { About } from '@/components/About';
 import { Format } from '@/components/Format';
@@ -16,7 +16,7 @@ export default function Home() {
       <Cursor />
       <Nav />
       <main>
-        <ScrollVideoHero />
+        <Hero />
         <Marquee />
         <About />
         <Marquee

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -84,17 +84,20 @@ export function Hero() {
       ref={sectionRef}
       className="relative h-screen overflow-hidden flex items-center justify-center bg-fairway-deeper"
     >
-      {/* Background image + gradient overlay */}
+      {/* Looping video background */}
       <div className="hero-bg absolute inset-0 will-change-transform">
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-105"
-          style={{
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1535131741446-b73d1b05b6e2?w=1600&q=80)',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper/80 via-fairway-deeper/60 to-fairway-deeper" />
-        <div className="absolute inset-0 bg-gradient-to-r from-fairway-deeper/50 via-transparent to-fairway-deeper/30" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover scale-105"
+        >
+          <source src="/fairway-walk.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-fairway-deeper/70 via-fairway-deeper/50 to-fairway-deeper" />
+        <div className="absolute inset-0 bg-gradient-to-r from-fairway-deeper/40 via-transparent to-transparent" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px]" />
       </div>
 

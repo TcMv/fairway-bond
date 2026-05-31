@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { Marquee } from '@/components/Marquee';
 import { About } from '@/components/About';
 import { Format } from '@/components/Format';
+import { Flipbook } from '@/components/Flipbook';
 import { Courses } from '@/components/Courses';
 import { Sponsors } from '@/components/Sponsors';
 import { RegisterForm } from '@/components/RegisterForm';
@@ -24,6 +25,7 @@ export default function Home() {
           reverse
         />
         <Format />
+        <Flipbook />
         <div id="courses" className="scroll-mt-20">
           <Courses />
         </div>
